@@ -1,0 +1,6 @@
+@MisaAsp_HostAddress = http://localhost:5146
+
+GET {{MisaAsp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
