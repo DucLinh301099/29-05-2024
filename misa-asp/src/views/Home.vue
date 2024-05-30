@@ -3,10 +3,9 @@
     <div id="app" class="app-container">
       <Header />
       <div class="main-content">
-        <Stats />
+        <Section />
       </div>
     </div>
-    <VideoSection />
     <BodyComponent />
     <ContactComponent />
  
@@ -16,23 +15,20 @@
 
 <script>
 import Header from '../components/Header.vue';
-import Stats from '../components/Stats.vue';
-import VideoSection from '../components/VideoSection.vue';
 import BodyComponent from '../components/BodyComponent.vue';
 import ContactComponent from '../components/ContactComponent.vue';
 import Footer from '../components/Footer.vue';
+import Section from '../components/Section.vue';
 
 
 export default {
   name: 'Home',
   components: {
     Header,
-    Stats,
-    VideoSection,
+    Section,
     BodyComponent,
     ContactComponent,
     Footer
-  
   }
 }
 </script>

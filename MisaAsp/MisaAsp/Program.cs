@@ -1,31 +1,51 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MisaAsp.Services;
 using Npgsql;
 using Dapper;
+using System;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigins",
+    options.AddPolicy("AllowAll",
         builder =>
         {
-            builder.WithOrigins("http://localhost:5174") // ??a ch? c?a ?ng d?ng Vue.js
+            builder.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
 });
-
-// Add Swagger services
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddAuthentication().AddBearerToken(a =>
+builder.Services.AddScoped<IDbConnection>(sp =>
 {
-    a.BearerTokenExpiration = TimeSpan.FromMinutes(1);
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var connectionString = configuration.GetConnectionString("DefaultConnection");
+    return new NpgsqlConnection(connectionString);
 });
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+        };
+    });
 
 var app = builder.Build();
 
@@ -40,7 +60,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MisaAsp v1"));
 }
 
-// Seed roles
 using (var scope = app.Services.CreateScope())
 {
     var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
@@ -54,7 +73,10 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseRouting();
-app.UseCors("AllowSpecificOrigins");
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

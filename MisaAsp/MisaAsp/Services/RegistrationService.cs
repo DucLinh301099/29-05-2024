@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using MisaAsp.Models;
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
@@ -16,17 +17,24 @@ namespace MisaAsp.Services
     {
         Task<int> RegisterUserAsync(RegistrationRequest request);
         Task<string> AuthenticateUserAsync(LoginRequest request);
-        Task AssignRoleAsync(int userId, string roleName);
-        Task<bool> UserHasRoleAsync(int userId, string roleName);
+        Task<IEnumerable<UserRequest>> GetAllUsersAsync();
     }
 
     public class RegistrationService : IRegistrationService
     {
         private readonly IConfiguration _configuration;
+        private readonly IDbConnection _dbConnection;
 
-        public RegistrationService(IConfiguration configuration)
+        public RegistrationService(IDbConnection dbConnection, IConfiguration configuration)
         {
+            _dbConnection = dbConnection;
             _configuration = configuration;
+        }
+
+        public async Task<IEnumerable<UserRequest>> GetAllUsersAsync()
+        {
+            var sql = "SELECT Id, FirstName, LastName, Email, PhoneNumber FROM Registrations";
+            return await _dbConnection.QueryAsync<UserRequest>(sql);
         }
 
         private string GetMd5Hash(string input)
@@ -106,42 +114,6 @@ namespace MisaAsp.Services
                 }
             }
             return null;
-        }
-
-        public async Task AssignRoleAsync(int userId, string roleName)
-        {
-            var roleSql = "SELECT Id FROM Roles WHERE Name = @RoleName";
-            var userRoleSql = "INSERT INTO UserRoles (UserId, RoleId) VALUES (@UserId, @RoleId)";
-
-            await using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                if (connection.State == ConnectionState.Closed)
-                    await connection.OpenAsync();
-
-                var roleId = await connection.ExecuteScalarAsync<int>(roleSql, new { RoleName = roleName });
-
-                if (roleId != default)
-                {
-                    await connection.ExecuteAsync(userRoleSql, new { UserId = userId, RoleId = roleId });
-                }
-            }
-        }
-
-        public async Task<bool> UserHasRoleAsync(int userId, string roleName)
-        {
-            var sql = @"SELECT COUNT(1)
-                        FROM UserRoles ur
-                        INNER JOIN Roles r ON ur.RoleId = r.Id
-                        WHERE ur.UserId = @UserId AND r.Name = @RoleName";
-
-            await using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                if (connection.State == ConnectionState.Closed)
-                    await connection.OpenAsync();
-
-                var result = await connection.ExecuteScalarAsync<bool>(sql, new { UserId = userId, RoleName = roleName });
-                return result;
-            }
         }
     }
 }

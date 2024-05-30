@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'RegisterComponent',
   data() {
@@ -52,7 +54,7 @@ export default {
     async register() {
       try {
         console.log('Sending request to register user...');
-        const response = await this.$axios.post('/Registration/register', {
+        const response = await axios.post('https://localhost:7173/api/Account/register', {
           FirstName: this.firstName,
           LastName: this.lastName,
           Email: this.email,

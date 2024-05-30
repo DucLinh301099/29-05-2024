@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\MisaAsp.csproj": {}
+    "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\MisaAsp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\MisaAsp.csproj": {
+    "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\MisaAsp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
+        "projectUniqueName": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
         "projectName": "MisaAsp",
-        "projectPath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
+        "projectPath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
         "packagesPath": "C:\\Users\\vdlinh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\obj\\",
+        "outputPath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vdlinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,6 +48,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
             },
             "Npgsql": {
               "target": "Package",

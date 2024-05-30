@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bwh3OloxEVgI7xBizZfNZiIhZtxGLpGDOlMRVoDH7OVJjceBNlR0DwVqpT/p67Y06g9z4ZL3pBrnra6OsfMegQ==",
+  "dgSpecHash": "hbmPElCyFlyy5aekg5cvkZ9DjvVPEBaGDbqhb+lTdQkhEUkwYVCHPBleQKGB38hvS7IpDYMqZw2eIZrNB7vFPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day3\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
+  "projectFilePath": "C:\\Users\\vdlinh\\source\\repos\\Vuejs\\Day5\\MisaAsp-Project\\29-05-2024\\MisaAsp\\MisaAsp\\MisaAsp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vdlinh\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.6\\microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.4\\microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
@@ -22,6 +23,8 @@
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.6.0\\microsoft.identitymodel.abstractions.7.6.0.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.6.0\\microsoft.identitymodel.jsonwebtokens.7.6.0.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.logging\\7.6.0\\microsoft.identitymodel.logging.7.6.0.nupkg.sha512",
+    "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.protocols\\7.1.2\\microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
+    "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\7.1.2\\microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.6.0\\microsoft.identitymodel.tokens.7.6.0.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\vdlinh\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",

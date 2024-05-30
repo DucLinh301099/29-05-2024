@@ -25,6 +25,9 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: 'LoginComponent',
   data() {
@@ -37,12 +40,13 @@ export default {
     async login() {
       try {
         console.log('Sending request to login user...');
-        const response = await this.$axios.post('/Login/login', {
+        const response = await axios.post('https://localhost:7173/api/Account/login', {
           EmailOrPhoneNumber: this.emailOrPhoneNumber,
           Password: this.password
         });
         console.log('User logged in:', response.data);
-        alert('Login successful!');
+        // alert('Login successful!');
+        this.$router.push('/admin');  // Redirect to Admin page after successful login
       } catch (error) {
         console.error('There was an error logging in the user:', error.response ? error.response.data : error.message);
         alert('Login failed: ' + (error.response ? error.response.data.message : error.message));
@@ -50,6 +54,8 @@ export default {
     }
   }
 };
+
+
 </script>
 
 <style scoped>
